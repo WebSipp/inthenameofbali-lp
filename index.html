@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In The Name Of Bali — Pesona Bali Dalam Wangi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --white:#ffffff;--off:#faf9f7;--off2:#f3f1ec;--off3:#ede8de;
+  --gold:#b8965a;--gold2:#9a7a45;--gold-light:rgba(184,150,90,0.1);
+  --dark:#1c1a17;--dark2:#2e2b26;
+  --text:#1c1a17;--muted:#8a8070;--muted2:#b5ad9f;
+  --border:rgba(184,150,90,0.2);--border2:#e8e4dc;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
+.label{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:16px;display:block;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--dark);margin-bottom:16px;}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-body{font-size:.92rem;color:var(--muted);line-height:1.85;}
+.btn-gold{background:var(--gold);color:var(--white);font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:15px 32px;text-decoration:none;transition:background .2s,transform .2s;display:inline-block;border:none;cursor:pointer;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);color:var(--white);}
+.btn-ghost{border:1px solid var(--border2);color:var(--dark);font-size:.75rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;padding:15px 32px;text-decoration:none;transition:border-color .2s,color .2s;display:inline-block;background:none;cursor:pointer;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border2);transition:padding .3s;}
+.nav-logo img{height:38px;width:auto;object-fit:contain;display:block;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-size:.72rem!important;letter-spacing:2px!important;text-transform:uppercase!important;font-weight:600!important;color:var(--white)!important;background:var(--gold);padding:10px 22px;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--gold2)!important;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--dark);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 48px 60px;gap:60px;max-width:1200px;margin:0 auto;}
+.hero-eyebrow{font-size:.68rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:500;display:flex;align-items:center;gap:12px;opacity:0;animation:fadeUp .9s ease .3s forwards;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:300;line-height:1.05;color:var(--dark);margin-bottom:20px;opacity:0;animation:fadeUp .9s ease .5s forwards;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:1rem;color:var(--muted);margin-bottom:40px;max-width:380px;font-weight:300;line-height:1.8;opacity:0;animation:fadeUp .9s ease .7s forwards;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease .9s forwards;}
+.hero-img-wrap{position:relative;opacity:0;animation:fadeIn 1.2s ease .6s forwards;}
+.hero-img-main{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.hero-badge{position:absolute;bottom:-20px;left:-20px;background:var(--white);border:1px solid var(--border2);padding:16px 20px;box-shadow:0 4px 24px rgba(0,0,0,.06);}
+.hero-badge-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--gold);line-height:1;}
+.hero-badge-text{font-size:.67rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+.hero-badge2{position:absolute;top:24px;right:-16px;background:var(--dark);color:var(--white);padding:12px 16px;text-align:center;}
+.hero-badge2-top{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);}
+.hero-badge2-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);line-height:1.1;}
+.hero-badge2-bot{font-size:.6rem;color:var(--muted2);letter-spacing:1px;}
+
+/* MARQUEE */
+.marquee-wrap{border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:15px 0;overflow:hidden;background:var(--off);}
+.marquee-track{display:flex;animation:marquee 22s linear infinite;width:max-content;}
+.marquee-item{display:flex;align-items:center;gap:20px;padding:0 32px;white-space:nowrap;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.marquee-dot{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;}
+
+/* BEST SELLER */
+.bs-section{padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto;}
+.bs-imgs{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.bs-img-main{grid-column:1/-1;aspect-ratio:16/9;object-fit:cover;width:100%;display:block;}
+.bs-img-sub{aspect-ratio:3/4;object-fit:cover;width:100%;display:block;}
+.note-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.pill{border:1px solid var(--border);padding:6px 14px;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.price-tag{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold);font-weight:400;margin-bottom:28px;}
+.price-note{font-size:.75rem;color:var(--muted);margin-left:8px;font-family:'Outfit',sans-serif;font-weight:300;}
+
+/* KOLEKSI */
+.koleksi-section{padding:80px 48px;background:var(--off);}
+.koleksi-wrap{max-width:1100px;margin:0 auto;}
+.koleksi-header{text-align:center;margin-bottom:50px;}
+.koleksi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.prod-card{background:var(--white);cursor:pointer;position:relative;}
+.prod-img-wrap{overflow:hidden;position:relative;}
+.prod-img{aspect-ratio:3/4;width:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.prod-card:hover .prod-img{transform:scale(1.04);}
+.prod-badge{position:absolute;top:12px;left:12px;background:var(--gold);color:var(--white);font-size:.6rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;padding:4px 10px;z-index:1;}
+.prod-info{padding:16px;}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--dark);margin-bottom:3px;}
+.prod-sub{font-size:.73rem;color:var(--muted);margin-bottom:10px;letter-spacing:.5px;}
+.prod-row{display:flex;justify-content:space-between;align-items:center;}
+.prod-price{font-size:.9rem;color:var(--gold);font-weight:500;}
+.prod-btn-mini{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:1px;transition:color .2s,border-color .2s;}
+.prod-btn-mini:hover{color:var(--gold);border-color:var(--gold);}
+
+/* PROD DETAIL */
+.prod-detail{padding:80px 48px;max-width:1100px;margin:0 auto;}
+.prod-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--border2);}
+.prod-detail-grid:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.prod-detail-grid.reverse{direction:rtl;}
+.prod-detail-grid.reverse>*{direction:ltr;}
+.prod-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.prod-gallery img{width:100%;object-fit:cover;display:block;}
+.prod-gallery img:first-child{grid-column:1/-1;aspect-ratio:16/9;}
+.prod-gallery img:not(:first-child){aspect-ratio:3/4;}
+.prod-detail-content{padding-top:16px;}
+.prod-vibe{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 20px;}
+.prod-vibe-tag{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border);color:var(--muted);}
+.prod-desc-full{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:24px;}
+.prod-spec{margin-bottom:28px;}
+.prod-spec-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border2);font-size:.82rem;}
+.prod-spec-row span:first-child{color:var(--muted);}
+.prod-spec-row span:last-child{font-weight:500;color:var(--dark);}
+.prod-order-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-wa-small{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:var(--white);font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:13px 24px;text-decoration:none;transition:background .2s;}
+.btn-wa-small:hover{background:#1db954;color:var(--white);}
+.btn-wa-small svg{width:16px;height:16px;}
+.btn-shop-small{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border2);color:var(--dark);font-size:.7rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:13px 20px;text-decoration:none;transition:border-color .2s,color .2s;}
+.btn-shop-small:hover{border-color:var(--gold);color:var(--gold);}
+
+/* VIDEO */
+.video-section{padding:80px 48px;background:var(--off);}
+.video-wrap{max-width:1100px;margin:0 auto;}
+.video-header{text-align:center;margin-bottom:50px;}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.video-card{position:relative;overflow:hidden;cursor:pointer;}
+.video-card video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;background:var(--off2);}
+.video-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,26,23,.5) 0%,transparent 50%);display:flex;align-items:flex-end;padding:16px;opacity:0;transition:opacity .3s;}
+.video-card:hover .video-overlay{opacity:1;}
+.video-sound-hint{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);color:#fff;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;opacity:0;transition:opacity .3s;}
+.video-card:hover .video-sound-hint{opacity:1;}
+.video-label{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.85);}
+.video-cta-wrap{text-align:center;margin-top:32px;}
+
+/* ORDER FLOW */
+.order-flow-section{padding:80px 48px;}
+.order-flow-wrap{max-width:900px;margin:0 auto;}
+.order-flow-header{text-align:center;margin-bottom:50px;}
+.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.flow-steps::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:var(--border2);z-index:0;}
+.flow-step{text-align:center;position:relative;z-index:1;padding:0 12px;}
+.flow-num{width:56px;height:56px;border:1px solid var(--border);background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);}
+.flow-title{font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dark);margin-bottom:6px;}
+.flow-desc{font-size:.78rem;color:var(--muted);line-height:1.6;}
+
+/* GROSIR */
+.grosir-section{background:var(--dark);padding:80px 48px;}
+.grosir-wrap{max-width:900px;margin:0 auto;text-align:center;}
+.grosir-wrap .label{color:var(--gold);}
+.grosir-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:#fff;margin-bottom:16px;}
+.grosir-title em{font-style:italic;color:var(--gold);}
+.grosir-body{font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.85;margin-bottom:40px;max-width:540px;margin-left:auto;margin-right:auto;}
+.grosir-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);margin-bottom:40px;}
+.grosir-card{background:rgba(255,255,255,.03);padding:32px 20px;text-align:center;}
+.grosir-card-icon{font-size:1.6rem;margin-bottom:14px;}
+.grosir-card-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#fff;margin-bottom:8px;}
+.grosir-card-desc{font-size:.78rem;color:rgba(255,255,255,.38);line-height:1.7;}
+.btn-gold-outline{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:15px 36px;text-decoration:none;transition:background .2s,color .2s;}
+.btn-gold-outline:hover{background:var(--gold);color:#fff;}
+
+/* WHY */
+.why-section{padding:80px 48px;background:var(--off);}
+.why-wrap{max-width:1000px;margin:0 auto;}
+.why-header{text-align:center;margin-bottom:50px;}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+.why-item{text-align:center;}
+.why-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);font-weight:300;line-height:1;margin-bottom:12px;}
+.why-title{font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dark);margin-bottom:8px;}
+.why-desc{font-size:.82rem;color:var(--muted);line-height:1.7;}
+
+/* MARKETPLACE */
+.mp-section{padding:80px 48px;}
+.mp-wrap{max-width:800px;margin:0 auto;text-align:center;}
+.mp-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px;}
+.mp-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);padding:14px 28px;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;color:var(--dark);text-decoration:none;transition:border-color .2s,color .2s;}
+.mp-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* CTA */
+.cta-section{padding:100px 48px;text-align:center;background:var(--off2);}
+.cta-wrap{max-width:700px;margin:0 auto;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;color:var(--dark);margin-bottom:16px;}
+.cta-title em{font-style:italic;color:var(--gold);}
+.cta-sub{font-size:.92rem;color:var(--muted);margin-bottom:40px;line-height:1.8;}
+.btn-wa-main{display:inline-flex;align-items:center;gap:12px;background:#25d366;color:#fff;font-size:.82rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:18px 48px;text-decoration:none;transition:background .2s,transform .2s;}
+.btn-wa-main:hover{background:#1db954;transform:translateY(-2px);color:#fff;}
+.btn-wa-main svg{width:22px;height:22px;}
+.cta-note{margin-top:24px;font-size:.78rem;color:var(--muted);}
+.cta-note a{color:var(--gold);text-decoration:none;margin:0 6px;}
+
+/* FOOTER */
+footer{background:var(--dark);padding:40px 48px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;}
+.footer-logo img{height:28px;width:auto;object-fit:contain;filter:invert(1) sepia(1) saturate(.5) brightness(1.2);opacity:.7;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{width:100%;text-align:center;font-size:.7rem;color:rgba(255,255,255,.2);padding-top:20px;border-top:1px solid rgba(255,255,255,.06);margin-top:20px;letter-spacing:1px;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+@media(max-width:960px){
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  .hero{grid-template-columns:1fr;padding:88px 24px 60px;gap:40px;}
+  .hero-img-wrap{order:-1;}
+  .bs-section{grid-template-columns:1fr;padding:60px 24px;gap:36px;}
+  .koleksi-section,.video-section,.order-flow-section,.why-section,.mp-section{padding:60px 24px;}
+  .koleksi-grid{grid-template-columns:repeat(2,1fr);}
+  .prod-detail{padding:60px 24px;}
+  .prod-detail-grid{grid-template-columns:1fr;gap:32px;}
+  .prod-detail-grid.reverse{direction:ltr;}
+  .video-grid{grid-template-columns:1fr;max-width:320px;margin:0 auto;}
+  .flow-steps{grid-template-columns:1fr 1fr;gap:32px;}
+  .flow-steps::before{display:none;}
+  .grosir-section{padding:60px 24px;}
+  .grosir-cards{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .cta-section{padding:70px 24px;}
+  footer{padding:32px 24px;}
+}
+@media(max-width:500px){
+  .koleksi-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .flow-steps{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .hero-btns{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <img src="assets/logo/logo-stacked.png" alt="In The Name Of Bali">
+  </a>
+  <div class="nav-links">
+    <a href="#koleksi">Koleksi</a>
+    <a href="#detail">Produk</a>
+    <a href="#review">Reviews</a>
+    <a href="#grosir">Grosir</a>
+    <a href="#order" class="nav-cta">Pesan Sekarang</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="mobileMenu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:32px;">
+  <button onclick="toggleMenu()" style="position:absolute;top:22px;right:24px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--dark);">✕</button>
+  <a href="#koleksi" onclick="toggleMenu()" style="font-size:1.4rem;font-family:'Cormorant Garamond',serif;color:var(--dark);text-decoration:none;">Koleksi</a>
+  <a href="#detail" onclick="toggleMenu()" style="font-size:1.4rem;font-family:'Cormorant Garamond',serif;color:var(--dark);text-decoration:none;">Produk</a>
+  <a href="#review" onclick="toggleMenu()" style="font-size:1.4rem;font-family:'Cormorant Garamond',serif;color:var(--dark);text-decoration:none;">Reviews</a>
+  <a href="#grosir" onclick="toggleMenu()" style="font-size:1.4rem;font-family:'Cormorant Garamond',serif;color:var(--dark);text-decoration:none;">Grosir</a>
+  <a href="#order" onclick="toggleMenu()" class="btn-gold" style="margin-top:8px;">Pesan Sekarang</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Parfum Lokal Premium · Est. 2022</p>
+    <h1 class="hero-title">Pesona Bali<br>dalam<br><em>Setiap Wangi</em></h1>
+    <p class="hero-sub">Dibuat dari inspirasi keindahan Bali — aroma autentik yang membawa kenangan dan menemani setiap momen berhargamu.</p>
+    <div class="hero-btns">
+      <a href="#koleksi" class="btn-gold">Lihat Koleksi</a>
+      <a href="#order" class="btn-ghost">Pesan via WA</a>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="assets/images/AfternooninBali/Afternoon in Bali 1.jpg" alt="In The Name Of Bali" class="hero-img-main">
+    <div class="hero-badge">
+      <div class="hero-badge-num">4</div>
+      <div class="hero-badge-text">Varian Eksklusif</div>
+    </div>
+    <div class="hero-badge2">
+      <div class="hero-badge2-top">Terpercaya</div>
+      <div class="hero-badge2-num">★ 4.9</div>
+      <div class="hero-badge2-bot">Ribuan pembeli</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><div class="marquee-dot"></div>Pesona Bali Dalam Wangi</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Premium Local Fragrance</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Tersedia di Shopee · TikTok · Lazada</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Inspired by The Island of Gods</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>4 Varian Eksklusif</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Pesona Bali Dalam Wangi</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Premium Local Fragrance</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Tersedia di Shopee · TikTok · Lazada</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Inspired by The Island of Gods</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>4 Varian Eksklusif</div>
+  </div>
+</div>
+
+<!-- BEST SELLER: MORNING IN BALI -->
+<section class="bs-section">
+  <div class="bs-imgs reveal">
+    <img src="assets/images/MorninginBali/Morning in Bali 1.jpg" alt="Morning in Bali" class="bs-img-main">
+    <img src="assets/images/MorninginBali/Morning in Bali 4.jpg" alt="Morning in Bali detail" class="bs-img-sub">
+    <img src="assets/images/MorninginBali/Morning in Bali 5.jpg" alt="Morning in Bali packaging" class="bs-img-sub">
+  </div>
+  <div class="reveal" style="padding-top:8px;">
+    <span class="label">⭐ Best Seller</span>
+    <h2 class="sec-title" style="font-size:clamp(2.4rem,5vw,4rem);">Morning<br><em>in Bali</em></h2>
+    <p class="sec-body" style="margin-bottom:20px;">Keindahan pagi hari Bali yang hangat — serasa liburan setiap hari. Aroma segar floral yang lembut, membawa ketenangan sejak langkah pertama.</p>
+    <div class="note-pills">
+      <span class="pill">Floral Fresh</span><span class="pill">Long Lasting</span>
+      <span class="pill">50 ML · EDP</span><span class="pill">Unisex</span>
+    </div>
+    <div class="price-tag">Rp 289.000 <span class="price-note">/ 50 ML</span></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="https://wa.me/6281268588102?text=Halo%2C%20saya%20mau%20pesan%20Morning%20in%20Bali" class="btn-gold" target="_blank">Pesan via WA</a>
+      <a href="https://shopee.co.id/inthenameofbali" class="btn-ghost" target="_blank">Beli di Shopee</a>
+    </div>
+  </div>
+</section>
+
+<!-- KOLEKSI -->
+<section class="koleksi-section" id="koleksi">
+  <div class="koleksi-wrap">
+    <div class="koleksi-header reveal">
+      <span class="label">Semua Koleksi</span>
+      <h2 class="sec-title">Temukan <em>Aromamu</em></h2>
+      <p class="sec-body" style="max-width:440px;margin:0 auto;">Empat varian terinspirasi dari keindahan Bali di setiap waktu — pilih yang paling bicara tentangmu.</p>
+    </div>
+    <div class="koleksi-grid">
+      <div class="prod-card reveal">
+        <div class="prod-img-wrap">
+          <img src="assets/images/MorninginBali/Morning in Bali 1.jpg" alt="Morning in Bali" class="prod-img">
+          <span class="prod-badge">Best Seller</span>
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Morning in Bali</div>
+          <div class="prod-sub">50 ML · Eau de Parfum</div>
+          <div class="prod-row"><span class="prod-price">Rp 289.000</span><a href="#morning" class="prod-btn-mini">Detail →</a></div>
+        </div>
+      </div>
+      <div class="prod-card reveal">
+        <div class="prod-img-wrap">
+          <img src="assets/images/AfternooninBali/Afternnoon in Bali 2.jpg" alt="Afternoon in Bali" class="prod-img">
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Afternoon in Bali</div>
+          <div class="prod-sub">50 ML · Eau de Parfum</div>
+          <div class="prod-row"><span class="prod-price">Rp 289.000</span><a href="#afternoon" class="prod-btn-mini">Detail →</a></div>
+        </div>
+      </div>
+      <div class="prod-card reveal">
+        <div class="prod-img-wrap">
+          <img src="assets/images/SurfinBali/Surf in Bali 2.jpg" alt="Surf in Bali" class="prod-img">
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Surf in Bali</div>
+          <div class="prod-sub">50 ML · Eau de Parfum</div>
+          <div class="prod-row"><span class="prod-price">Rp 289.000</span><a href="#surf" class="prod-btn-mini">Detail →</a></div>
+        </div>
+      </div>
+      <div class="prod-card reveal">
+        <div class="prod-img-wrap">
+          <img src="assets/images/NightinBali/Night in Bali 2.jpg" alt="Night in Bali" class="prod-img">
+        </div>
+        <div class="prod-info">
+          <div class="prod-name">Night in Bali</div>
+          <div class="prod-sub">50 ML · Eau de Parfum</div>
+          <div class="prod-row"><span class="prod-price">Rp 289.000</span><a href="#night" class="prod-btn-mini">Detail →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL PRODUK -->
+<section class="prod-detail" id="detail">
+  <div style="text-align:center;margin-bottom:60px;" class="reveal">
+    <span class="label">Detail Produk</span>
+    <h2 class="sec-title">Kenali Lebih <em>Dekat</em></h2>
+  </div>
+
+  <!-- MORNING -->
+  <div class="prod-detail-grid" id="morning">
+    <div class="prod-gallery reveal">
+      <img src="assets/images/MorninginBali/Morning in Bali 1.jpg" alt="Morning in Bali">
+      <img src="assets/images/MorninginBali/Morning in Bali 3.jpg" alt="Morning in Bali detail">
+      <img src="assets/images/MorninginBali/Morning in Bali 5.jpg" alt="Morning in Bali packaging">
+    </div>
+    <div class="prod-detail-content reveal">
+      <span class="label">Best Seller · Varian 01</span>
+      <h3 class="sec-title" style="font-size:clamp(2rem,4vw,3rem);">Morning<br><em>in Bali</em></h3>
+      <div class="prod-vibe"><span class="prod-vibe-tag">Floral</span><span class="prod-vibe-tag">Fresh</span><span class="prod-vibe-tag">Citrus</span><span class="prod-vibe-tag">Warm</span></div>
+      <p class="prod-desc-full">Keindahan pagi hari Bali yang hangat — serasa liburan setiap hari. Terinspirasi dari embun pagi dan kelopak bunga tropis yang mekar di bawah sinar matahari pertama.</p>
+      <div class="prod-spec">
+        <div class="prod-spec-row"><span>Volume</span><span>50 ML</span></div>
+        <div class="prod-spec-row"><span>Jenis</span><span>Eau de Parfum (EDP)</span></div>
+        <div class="prod-spec-row"><span>Ketahanan</span><span>6–8 Jam</span></div>
+        <div class="prod-spec-row"><span>Cocok Untuk</span><span>Aktivitas Harian · Unisex</span></div>
+        <div class="prod-spec-row"><span>Harga</span><span style="color:var(--gold);font-weight:600;">Rp 289.000</span></div>
+      </div>
+      <div class="prod-order-btns">
+        <a href="https://wa.me/6281268588102?text=Halo%2C%20saya%20mau%20pesan%20Morning%20in%20Bali" class="btn-wa-small" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.559 4.122 1.534 5.854L.054 23.36a.75.75 0 0 0 .911.974l5.752-1.514A11.951 11.951 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a10 10 0 0 1-5.209-1.463l-.371-.22-3.857 1.015 1.027-3.773-.236-.378A10 10 0 1 1 12 22z"/></svg>Pesan via WA</a>
+        <a href="https://shopee.co.id/inthenameofbali" class="btn-shop-small" target="_blank">🛍 Shopee</a>
+        <a href="https://vt.tiktok.com/ZSxSuKJ99/?page=Mall" class="btn-shop-small" target="_blank">🎵 TikTok</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AFTERNOON -->
+  <div class="prod-detail-grid reverse" id="afternoon">
+    <div class="prod-gallery reveal">
+      <img src="assets/images/AfternooninBali/Afternoon in Bali 1.jpg" alt="Afternoon in Bali">
+      <img src="assets/images/AfternooninBali/Afternoon in Bali 4.jpg" alt="Afternoon in Bali detail">
+      <img src="assets/images/AfternooninBali/Afternoon in Bali 5.jpg" alt="Afternoon in Bali packaging">
+    </div>
+    <div class="prod-detail-content reveal">
+      <span class="label">Varian 02</span>
+      <h3 class="sec-title" style="font-size:clamp(2rem,4vw,3rem);">Afternoon<br><em>in Bali</em></h3>
+      <div class="prod-vibe"><span class="prod-vibe-tag">Woody</span><span class="prod-vibe-tag">Sandy</span><span class="prod-vibe-tag">Marine</span><span class="prod-vibe-tag">Warm</span></div>
+      <p class="prod-desc-full">Hangat sore hari di tepi pantai Bali — semilir angin laut, pasir putih, dan cahaya keemasan yang perlahan tenggelam. Aroma yang membawa jiwa ke ketenangan sempurna.</p>
+      <div class="prod-spec">
+        <div class="prod-spec-row"><span>Volume</span><span>50 ML</span></div>
+        <div class="prod-spec-row"><span>Jenis</span><span>Eau de Parfum (EDP)</span></div>
+        <div class="prod-spec-row"><span>Ketahanan</span><span>6–8 Jam</span></div>
+        <div class="prod-spec-row"><span>Cocok Untuk</span><span>Sore & Evening · Unisex</span></div>
+        <div class="prod-spec-row"><span>Harga</span><span style="color:var(--gold);font-weight:600;">Rp 289.000</span></div>
+      </div>
+      <div class="prod-order-btns">
+        <a href="https://wa.me/6281268588102?text=Halo%2C%20saya%20mau%20pesan%20Afternoon%20in%20Bali" class="btn-wa-small" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.559 4.122 1.534 5.854L.054 23.36a.75.75 0 0 0 .911.974l5.752-1.514A11.951 11.951 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a10 10 0 0 1-5.209-1.463l-.371-.22-3.857 1.015 1.027-3.773-.236-.378A10 10 0 1 1 12 22z"/></svg>Pesan via WA</a>
+        <a href="https://shopee.co.id/inthenameofbali" class="btn-shop-small" target="_blank">🛍 Shopee</a>
+        <a href="https://vt.tiktok.com/ZSxSuKJ99/?page=Mall" class="btn-shop-small" target="_blank">🎵 TikTok</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SURF -->
+  <div class="prod-detail-grid" id="surf">
+    <div class="prod-gallery reveal">
+      <img src="assets/images/SurfinBali/Surf in Bali 2.jpg" alt="Surf in Bali">
+      <img src="assets/images/SurfinBali/Surf in Bali 4.jpg" alt="Surf in Bali detail">
+      <img src="assets/images/SurfinBali/Surf n Bali 5.jpg" alt="Surf in Bali packaging">
+    </div>
+    <div class="prod-detail-content reveal">
+      <span class="label">Varian 03</span>
+      <h3 class="sec-title" style="font-size:clamp(2rem,4vw,3rem);">Surf<br><em>in Bali</em></h3>
+      <div class="prod-vibe"><span class="prod-vibe-tag">Aquatic</span><span class="prod-vibe-tag">Fresh</span><span class="prod-vibe-tag">Cool</span><span class="prod-vibe-tag">Energetic</span></div>
+      <p class="prod-desc-full">Nuansa ombak dan angin laut Bali yang bebas — aroma segar aquatic yang membawa semangat dan energi. Cocok untuk jiwa-jiwa yang selalu bergerak dan menikmati hidup.</p>
+      <div class="prod-spec">
+        <div class="prod-spec-row"><span>Volume</span><span>50 ML</span></div>
+        <div class="prod-spec-row"><span>Jenis</span><span>Eau de Parfum (EDP)</span></div>
+        <div class="prod-spec-row"><span>Ketahanan</span><span>6–8 Jam</span></div>
+        <div class="prod-spec-row"><span>Cocok Untuk</span><span>Aktivitas & Olahraga · Unisex</span></div>
+        <div class="prod-spec-row"><span>Harga</span><span style="color:var(--gold);font-weight:600;">Rp 289.000</span></div>
+      </div>
+      <div class="prod-order-btns">
+        <a href="https://wa.me/6281268588102?text=Halo%2C%20saya%20mau%20pesan%20Surf%20in%20Bali" class="btn-wa-small" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.559 4.122 1.534 5.854L.054 23.36a.75.75 0 0 0 .911.974l5.752-1.514A11.951 11.951 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a10 10 0 0 1-5.209-1.463l-.371-.22-3.857 1.015 1.027-3.773-.236-.378A10 10 0 1 1 12 22z"/></svg>Pesan via WA</a>
+        <a href="https://shopee.co.id/inthenameofbali" class="btn-shop-small" target="_blank">🛍 Shopee</a>
+        <a href="https://vt.tiktok.com/ZSxSuKJ99/?page=Mall" class="btn-shop-small" target="_blank">🎵 TikTok</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NIGHT -->
+  <div class="prod-detail-grid reverse" id="night">
+    <div class="prod-gallery reveal">
+      <img src="assets/images/NightinBali/Night in Bali 2.jpg" alt="Night in Bali">
+      <img src="assets/images/NightinBali/Night in Bali 3.jpg" alt="Night in Bali detail">
+      <img src="assets/images/NightinBali/Night in Bali 5.jpg" alt="Night in Bali packaging">
+    </div>
+    <div class="prod-detail-content reveal">
+      <span class="label">Varian 04</span>
+      <h3 class="sec-title" style="font-size:clamp(2rem,4vw,3rem);">Night<br><em>in Bali</em></h3>
+      <div class="prod-vibe"><span class="prod-vibe-tag">Musky</span><span class="prod-vibe-tag">Deep</span><span class="prod-vibe-tag">Oriental</span><span class="prod-vibe-tag">Mysterious</span></div>
+      <p class="prod-desc-full">Malam Bali yang penuh bintang, hangat, dan penuh misteri — aroma dalam yang intens, sensual, dan tak terlupakan. Untuk mereka yang ingin meninggalkan kesan abadi.</p>
+      <div class="prod-spec">
+        <div class="prod-spec-row"><span>Volume</span><span>50 ML</span></div>
+        <div class="prod-spec-row"><span>Jenis</span><span>Eau de Parfum (EDP)</span></div>
+        <div class="prod-spec-row"><span>Ketahanan</span><span>8–10 Jam</span></div>
+        <div class="prod-spec-row"><span>Cocok Untuk</span><span>Malam & Special Event · Unisex</span></div>
+        <div class="prod-spec-row"><span>Harga</span><span style="color:var(--gold);font-weight:600;">Rp 289.000</span></div>
+      </div>
+      <div class="prod-order-btns">
+        <a href="https://wa.me/6281268588102?text=Halo%2C%20saya%20mau%20pesan%20Night%20in%20Bali" class="btn-wa-small" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.559 4.122 1.534 5.854L.054 23.36a.75.75 0 0 0 .911.974l5.752-1.514A11.951 11.951 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a10 10 0 0 1-5.209-1.463l-.371-.22-3.857 1.015 1.027-3.773-.236-.378A10 10 0 1 1 12 22z"/></svg>Pesan via WA</a>
+        <a href="https://shopee.co.id/inthenameofbali" class="btn-shop-small" target="_blank">🛍 Shopee</a>
+        <a href="https://vt.tiktok.com/ZSxSuKJ99/?page=Mall" class="btn-shop-small" target="_blank">🎵 TikTok</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="review">
+  <div class="video-wrap">
+    <div class="video-header reveal">
+      <span class="label">Real Reviews</span>
+      <h2 class="sec-title">Yang Mereka <em>Rasakan</em></h2>
+      <p class="sec-body" style="max-width:420px;margin:0 auto;">Bukan sekadar kata-kata — lihat sendiri reaksi jujur mereka saat pertama mencoba.</p>
+    </div>
+    <div class="video-grid reveal">
+      <div class="video-card">
+        <video src="assets/videos/review-1.mp4" autoplay loop muted playsinline></video>
+        <div class="video-overlay"><span class="video-label">Tonton selengkapnya ↗</span></div>
+        <div class="video-sound-hint">🔊 Hover untuk suara</div>
+      </div>
+      <div class="video-card">
+        <video src="assets/videos/review-2.mp4" autoplay loop muted playsinline></video>
+        <div class="video-overlay"><span class="video-label">Tonton selengkapnya ↗</span></div>
+        <div class="video-sound-hint">🔊 Hover untuk suara</div>
+      </div>
+      <div class="video-card">
+        <video src="assets/videos/review-3.mp4" autoplay loop muted playsinline></video>
+        <div class="video-overlay"><span class="video-label">Tonton selengkapnya ↗</span></div>
+        <div class="video-sound-hint">🔊 Hover untuk suara</div>
+      </div>
+    </div>
+    <div class="video-cta-wrap reveal">
+      <a href="https://www.instagram.com/inthenameofbali" target="_blank" class="btn-ghost">Lihat Semua Review di Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARA ORDER -->
+<section class="order-flow-section">
+  <div class="order-flow-wrap">
+    <div class="order-flow-header reveal">
+      <span class="label">Cara Pemesanan</span>
+      <h2 class="sec-title">Mudah & <em>Cepat</em></h2>
+    </div>
+    <div class="flow-steps reveal">
+      <div class="flow-step"><div class="flow-num">01</div><div class="flow-title">Pilih Varian</div><div class="flow-desc">Tentukan aroma favoritmu dari 4 koleksi eksklusif kami.</div></div>
+      <div class="flow-step"><div class="flow-num">02</div><div class="flow-title">Hubungi Kami</div><div class="flow-desc">Chat via WhatsApp atau langsung checkout di marketplace.</div></div>
+      <div class="flow-step"><div class="flow-num">03</div><div class="flow-title">Konfirmasi</div><div class="flow-desc">Kami konfirmasi pesanan & info pengiriman dalam menit.</div></div>
+      <div class="flow-step"><div class="flow-num">04</div><div class="flow-title">Dikirim!</div><div class="flow-desc">Dikemas rapi dan dikirim ke seluruh Indonesia.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GROSIR -->
+<section class="grosir-section" id="grosir">
+  <div class="grosir-wrap">
+    <span class="label reveal">Pembelian Khusus</span>
+    <h2 class="grosir-title reveal">Untuk <em>Acara & Grosir</em></h2>
+    <p class="grosir-body reveal">Pesan dalam jumlah besar untuk acara kantor, hampers, D&D, wedding gift, atau kebutuhan korporat. Harga spesial dan packaging custom tersedia.</p>
+    <div class="grosir-cards reveal">
+      <div class="grosir-card"><div class="grosir-card-icon">🏢</div><div class="grosir-card-title">Corporate Gift</div><div class="grosir-card-desc">Souvenir eksklusif untuk acara kantor, seminar, dan gathering perusahaan.</div></div>
+      <div class="grosir-card"><div class="grosir-card-icon">💍</div><div class="grosir-card-title">Wedding & Event</div><div class="grosir-card-desc">Hadiah pernikahan & D&D berkesan — packaging premium dan custom nama.</div></div>
+      <div class="grosir-card"><div class="grosir-card-icon">📦</div><div class="grosir-card-title">Reseller / Grosir</div><div class="grosir-card-desc">Harga spesial untuk pembelian partai. Minimal order dapat didiskusikan.</div></div>
+    </div>
+    <a href="https://wa.me/6281268588102?text=Halo%20In%20The%20Name%20Of%20Bali%2C%20saya%20ingin%20konsultasi%20grosir%20%2F%20corporate%20gift" class="btn-gold-outline reveal" target="_blank">Konsultasi Sekarang</a>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section">
+  <div class="why-wrap">
+    <div class="why-header reveal">
+      <span class="label">Kenapa In The Name Of Bali?</span>
+      <h2 class="sec-title">Standar yang <em>Tidak Kami Kompromikan</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal"><div class="why-num">01</div><div class="why-title">Bahan Premium</div><div class="why-desc">Dipilih secara ketat untuk menghasilkan aroma kaya, tahan lama, dan aman di kulit.</div></div>
+      <div class="why-item reveal"><div class="why-num">02</div><div class="why-title">Inspired by Bali</div><div class="why-desc">Setiap aroma terinspirasi dari keindahan dan ketenangan Pulau Dewata yang ikonik.</div></div>
+      <div class="why-item reveal"><div class="why-num">03</div><div class="why-title">Brand Lokal</div><div class="why-desc">Produk asli Indonesia, dibuat dengan kebanggaan dan kecintaan terhadap budaya lokal.</div></div>
+      <div class="why-item reveal"><div class="why-num">04</div><div class="why-title">Terpercaya</div><div class="why-desc">Tersedia di Shopee, TikTok Shop & Lazada. Ribuan pembeli puas di seluruh Indonesia.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section class="mp-section">
+  <div class="mp-wrap">
+    <div class="reveal">
+      <span class="label">Tersedia Di</span>
+      <h2 class="sec-title" style="font-size:clamp(1.8rem,3.5vw,2.8rem);">Belanja di Platform <em>Favoritmu</em></h2>
+    </div>
+    <div class="mp-grid reveal">
+      <a href="https://shopee.co.id/inthenameofbali" target="_blank" class="mp-btn">🛍 Shopee</a>
+      <a href="https://vt.tiktok.com/ZSxSuKJ99/?page=Mall" target="_blank" class="mp-btn">🎵 TikTok Shop</a>
+      <a href="https://s.lazada.co.id/s.Zm5qGW?c=b" target="_blank" class="mp-btn">🛒 Lazada</a>
+      <a href="https://www.instagram.com/inthenameofbali" target="_blank" class="mp-btn">📸 Instagram</a>
+      <a href="https://www.facebook.com/share/1B66CDmXJm/" target="_blank" class="mp-btn">📘 Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="order">
+  <div class="cta-wrap">
+    <span class="label reveal">Siap Pesan?</span>
+    <h2 class="cta-title reveal">Dapatkan Aromamu<br><em>Sekarang</em></h2>
+    <p class="cta-sub reveal">Chat langsung — konsultasi gratis, respon cepat, dikirim ke seluruh Indonesia.</p>
+    <a href="https://wa.me/6281268588102?text=Halo%20In%20The%20Name%20Of%20Bali%2C%20saya%20mau%20tanya%20dan%20pesan%20parfum%20%F0%9F%8C%BA" class="btn-wa-main reveal" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.559 4.122 1.534 5.854L.054 23.36a.75.75 0 0 0 .911.974l5.752-1.514A11.951 11.951 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a10 10 0 0 1-5.209-1.463l-.371-.22-3.857 1.015 1.027-3.773-.236-.378A10 10 0 1 1 12 22z"/></svg>
+      Chat WhatsApp
+    </a>
+    <p class="cta-note reveal">Atau pesan di: <a href="https://shopee.co.id/inthenameofbali" target="_blank">Shopee</a> · <a href="https://vt.tiktok.com/ZSxSuKJ99/?page=Mall" target="_blank">TikTok Shop</a> · <a href="https://s.lazada.co.id/s.Zm5qGW?c=b" target="_blank">Lazada</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="assets/logo/logo-wide.png" alt="In The Name Of Bali">
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/inthenameofbali" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/share/1B66CDmXJm/" target="_blank">Facebook</a>
+      <a href="https://shopee.co.id/inthenameofbali" target="_blank">Shopee</a>
+      <a href="https://vt.tiktok.com/ZSxSuKJ99/?page=Mall" target="_blank">TikTok Shop</a>
+      <a href="https://s.lazada.co.id/s.Zm5qGW?c=b" target="_blank">Lazada</a>
+      <a href="#grosir">Grosir & Event</a>
+    </div>
+    <p class="footer-copy">© 2025 In The Name Of Bali · Pesona Bali Dalam Wangi · All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function toggleMenu(){const m=document.getElementById('mobileMenu');m.style.display=m.style.display==='flex'?'none':'flex';}
+document.querySelectorAll('.video-card').forEach(card=>{
+  const vid=card.querySelector('video');if(!vid)return;
+  vid.muted=true;vid.play().catch(()=>{});
+  card.addEventListener('mouseenter',()=>{vid.muted=false;});
+  card.addEventListener('mouseleave',()=>{vid.muted=true;});
+  card.addEventListener('touchstart',()=>{vid.muted=!vid.muted;},{passive:true});
+});
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mainNav');
+  nav.style.padding=window.scrollY>60?'12px 48px':'18px 48px';
+});
+</script>
+</body>
+</html>
